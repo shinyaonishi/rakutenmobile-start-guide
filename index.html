@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 楽天モバイル・スタートガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --rakuten-pink: #e6006e;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .magenta-gradient {
+            background: linear-gradient(135deg, #e6006e 0%, #ff4eb0 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .step-number {
+            background-color: var(--rakuten-pink);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .float-icon {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* 共通ボタン（カード）スタイル */
+        .promo-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem;
+            border-radius: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            height: 6rem; /* 高さを統一 */
+            border-width: 2px;
+        }
+        .promo-card:hover {
+            transform: translateY(-2px);
+        }
+        .promo-card:active {
+            transform: translateY(0);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('top')">
+                <div class="w-8 h-8 bg-[#e6006e] rounded-full flex items-center justify-center text-white">
+                    <i class="fas fa-rocket text-sm"></i>
+                </div>
+                <span class="font-bold text-lg tracking-tight">楽天モバイルスタートガイド</span>
+            </div>
+            <button class="text-gray-400 p-2" onclick="showPage('top')">
+                <i class="fas fa-home text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- TOP PAGE -->
+    <div id="page-top" class="page-content active">
+        <section class="magenta-gradient text-white py-10 px-6 text-center">
+            <h1 class="text-2xl font-bold mb-3">もう、迷わない。<br>楽天モバイルへの一歩をサポート</h1>
+            <p class="text-sm opacity-90">あなたにぴったりの手順をご案内します。</p>
+        </section>
+
+        <main class="max-w-4xl mx-auto px-4 py-8">
+            <h2 class="text-center font-bold text-gray-800 mb-6">気になる項目を選んでください</h2>
+            
+            <!-- Connection Check -->
+            <div class="mb-8">
+                <a href="https://network.mobile.rakuten.co.jp/area/?l-id=top_area-top_tokyo_pitari&s-id=top_area-top_tokyo_all" target="_blank" class="flex items-center justify-center gap-2 bg-white border-2 border-blue-400 text-blue-600 py-3 rounded-xl font-bold text-sm shadow-sm hover:bg-blue-50 transition-colors">
+                    <i class="fas fa-map-marker-alt"></i>
+                    お家や職場でつながるかをチェック！
+                </a>
+            </div>
+
+            <!-- Main Promo Buttons (Unified Design) -->
+            <div class="grid grid-cols-1 gap-4 mb-8">
+    
+                <!-- Comparison Card -->
+                <div onclick="showPage('compare')" class="promo-card bg-yellow-50 border-yellow-400 card-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white p-2 rounded-full shadow-sm float-icon flex items-center justify-center w-12 h-12">
+                            <i class="fas fa-scale-balanced text-yellow-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] text-yellow-600 font-bold leading-none mb-1">おトクを即チェック</span>
+                            <span class="text-sm font-black text-gray-800">【まず比較！】3大キャリアとの料金差</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-yellow-300 text-sm"></i>
+                </div>
+
+                <!-- Campaign Promo Card -->
+                <div onclick="showPage('campaign')" class="promo-card bg-pink-50 border-pink-200 card-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white p-2 rounded-full shadow-sm float-icon flex items-center justify-center w-12 h-12">
+                            <i class="fas fa-gift text-pink-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] text-pink-500 font-bold leading-none mb-1">期間限定キャンペーン実施中</span>
+                            <span class="text-sm font-black text-gray-800">紹介キャンペーンの詳細を確認する</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-pink-300 text-sm"></i>
+                </div>
+
+            </div>
+
+            <!-- Guide Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div onclick="showPage('p1')" class="bg-white p-5 rounded-2xl border border-pink-50 card-shadow cursor-pointer hover:bg-pink-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-right-left text-3xl text-[#e6006e] w-12 text-center"></i>
+                        <div>
+                            <h3 class="font-bold">他社からお乗り換え</h3>
+                            <p class="text-xs text-gray-500">電話番号そのままで安くしたい方</p>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="showPage('p2')" class="bg-white p-5 rounded-2xl border border-pink-50 card-shadow cursor-pointer hover:bg-pink-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-box-open text-3xl text-[#e6006e] w-12 text-center"></i>
+                        <div>
+                            <h3 class="font-bold">スマホも新しく購入</h3>
+                            <p class="text-xs text-gray-500">最新機種をお得に手に入れたい方</p>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="showPage('p3')" class="bg-white p-5 rounded-2xl border border-pink-50 card-shadow cursor-pointer hover:bg-pink-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-child text-3xl text-[#e6006e] w-12 text-center"></i>
+                        <div>
+                            <h3 class="font-bold">お子さまのスマホデビュー</h3>
+                            <p class="text-xs text-gray-500">安心・安全・安く持たせたい方</p>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="showPage('p4')" class="bg-white p-5 rounded-2xl border border-pink-50 card-shadow cursor-pointer hover:bg-pink-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-user-friends text-3xl text-[#e6006e] w-12 text-center"></i>
+                        <div>
+                            <h3 class="font-bold">人生の大先輩（シニア）</h3>
+                            <p class="text-xs text-gray-500">難しい設定なしで使いこなしたい方</p>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="showPage('p5')" class="bg-white p-5 rounded-2xl border border-pink-50 card-shadow cursor-pointer hover:bg-pink-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-mobile text-3xl text-[#e6006e] w-12 text-center"></i>
+                        <i class="fas fa-mobile text-xl text-[#e6006e] -ml-4 mt-4"></i>
+                        <div>
+                            <h3 class="font-bold">2台目・サブ機をご検討</h3>
+                            <p class="text-xs text-gray-500">仕事用やタブレットなど賢い使い分け</p>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="showPage('p6')" class="bg-white p-5 rounded-2xl border border-pink-50 card-shadow cursor-pointer hover:bg-pink-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-wifi text-3xl text-[#e6006e] w-12 text-center"></i>
+                        <div>
+                            <h3 class="font-bold">家のWi-Fiをご利用</h3>
+                            <p class="text-xs text-gray-500">工事不要！データ無制限でネットを楽しむ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Page: Campaign Details -->
+    <div id="page-campaign" class="page-content">
+        <div class="bg-white p-6 border-b">
+            <button onclick="showPage('top')" class="text-pink-500 text-sm mb-2 inline-flex items-center gap-1">
+                <i class="fas fa-chevron-left"></i> 戻る
+            </button>
+            <h2 class="text-2xl font-bold text-[#e6006e]">紹介キャンペーン詳細</h2>
+        </div>
+
+        <main class="p-6 max-w-2xl mx-auto space-y-6">
+            <div class="bg-[#fdf2f7] border-l-4 border-[#e6006e] p-4 rounded-r-xl shadow-sm">
+                <p class="text-sm font-black text-[#e6006e] leading-snug">
+                    お乗り換えで14,000ポイント、<br>新規ご契約で11,000ポイントプレゼント！
+                </p>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+                <h3 class="text-sm font-black text-gray-800 mb-6 flex items-center gap-2">
+                    <span class="bg-pink-500 text-white px-2 py-0.5 rounded text-[10px]">CHECK</span>
+                    キャンペーンエントリー方法
+                </h3>
+                
+                <div class="space-y-6 relative">
+                    <div class="flex gap-4 relative">
+                        <div class="flex-shrink-0 w-7 h-7 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-sm">1</div>
+                        <div class="pt-0.5">
+                            <p class="text-sm font-bold text-gray-700 leading-snug">楽天IDでログインする</p>
+                        </div>
+                        <div class="absolute left-[13px] top-7 w-[2px] h-8 bg-pink-50"></div>
+                    </div>
+                    <div class="flex gap-4 relative">
+                        <div class="flex-shrink-0 w-7 h-7 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-sm">2</div>
+                        <div class="pt-0.5 w-full">
+                            <p class="text-sm font-bold text-gray-700 leading-snug mb-2">紹介キャンペーンページに遷移すればエントリー完了です</p>
+                            <img src="shokai_cpn_lp.jpg" alt="紹介キャンペーンページキャプチャ" class="w-full rounded-lg border border-gray-200 shadow-sm">
+                        </div>
+                        <div class="absolute left-[13px] top-7 bottom-0 w-[2px] bg-pink-50 -z-10"></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-7 h-7 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold z-10 shadow-sm">3</div>
+                        <div class="pt-0.5">
+                            <p class="text-sm font-bold text-gray-700 leading-relaxed">
+                                エントリー完了後は、サイトからのオンライン契約、楽天モバイルショップでの店頭契約のいずれも適用対象になります
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://r10.to/h83Em3?openExternalBrowser=1" target="_blank" class="block w-full bg-[#e6006e] text-white text-center py-4 rounded-2xl font-black text-sm shadow-lg hover:opacity-90 transition-opacity active:scale-[0.98]">
+                キャンペーンのエントリーはこちら
+            </a>
+            
+            <div class="text-center pt-4">
+                <button onclick="showPage('top')" class="text-gray-400 text-xs hover:underline">トップページに戻る</button>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Comparison Table Component -->
+    <template id="comparison-table">
+        <section class="mb-10 px-2">
+            <h3 class="text-xl font-bold text-center mb-6">無制限プランの月額料金を比較</h3>
+            <div class="bg-white rounded-2xl border-2 border-gray-100 card-shadow overflow-hidden mb-6">
+                <div class="bg-gray-50 py-3 px-4 border-b text-center">
+                    <span class="text-sm font-bold text-gray-600">データ無制限プラン比較（月額・税込）</span>
+                </div>
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="bg-white border-b">
+                            <th class="py-4 px-2 text-left text-gray-500 font-medium">キャリア</th>
+                            <th class="py-4 px-2 text-center text-gray-500 font-medium whitespace-nowrap">通常月額</th>
+                            <th class="py-4 px-2 text-center text-[#e6006e] font-bold bg-pink-50">最安時</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="py-4 px-2 text-xs font-bold text-gray-700">docomo<br><span class="text-[10px] font-normal text-gray-400">eximo</span></td>
+                            <td class="py-4 px-2 text-center text-gray-400 text-xs">7,315円</td>
+                            <td class="py-4 px-2 text-center font-bold bg-pink-50 text-gray-600">4,928円</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-4 px-2 text-xs font-bold text-gray-700">au<br><span class="text-[10px] font-normal text-gray-400">使い放題MAX</span></td>
+                            <td class="py-4 px-2 text-center text-gray-400 text-xs">7,238円</td>
+                            <td class="py-4 px-2 text-center font-bold bg-pink-50 text-gray-600">4,928円</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-4 px-2 text-xs font-bold text-gray-700">SoftBank<br><span class="text-[10px] font-normal text-gray-400">メリハリ無制限+</span></td>
+                            <td class="py-4 px-2 text-center text-gray-400 text-xs">7,425円</td>
+                            <td class="py-4 px-2 text-center font-bold bg-pink-50 text-gray-600">4,928円</td>
+                        </tr>
+                        <tr class="bg-pink-50">
+                            <td class="py-5 px-2 text-xs font-black text-[#e6006e]">楽天モバイル<br><span class="text-[10px] font-normal">最強プラン</span></td>
+                            <td class="py-5 px-2 text-center text-[#e6006e] font-black text-lg">3,278円</td>
+                            <td class="py-5 px-2 text-center font-black bg-[#e6006e] text-white rounded-b-lg">
+                                <span class="text-xs">ずっと</span><br>3,278円
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Added Image and Simulation Link -->
+            <div class="space-y-4">
+                <img src="mobile_price_competitor.jpg" alt="携帯キャリア料金プラン比較表" class="w-full rounded-xl border border-gray-200 shadow-sm">
+                
+                <a href="https://network.mobile.rakuten.co.jp/fee/simulation/" target="_blank" class="block w-full bg-white border-2 border-[#e6006e] text-[#e6006e] text-center py-4 rounded-xl font-bold shadow-sm hover:bg-pink-50 transition-colors">
+                    <i class="fas fa-calculator mr-2"></i>料金＆ポイントかんたんシミュレーション
+                </a>
+            </div>
+        </section>
+    </template>
+
+    <!-- Common Procedure Component Template -->
+    <template id="common-steps">
+        <section class="mt-12 border-t pt-10 px-2">
+            <h3 class="text-xl font-bold text-center mb-8">お申し込みの共通ステップ</h3>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl border-2 border-pink-100 card-shadow">
+                    <div class="flex items-center mb-4">
+                        <span class="step-number">1</span>
+                        <h4 class="font-bold text-lg text-[#e6006e]">楽天IDを用意する</h4>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                        楽天モバイルの契約には「楽天会員ID」が必須です。
+                    </p>
+                    <a href="https://www.rakuten.co.jp/myrakuten/help/" target="_blank" class="text-pink-500 underline text-xs">→ 楽天会員に新規登録する（無料）</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border-2 border-pink-100 card-shadow">
+                    <div class="flex items-center mb-4">
+                        <span class="step-number">2</span>
+                        <h4 class="font-bold text-lg text-[#e6006e]">公式サイトから申し込む</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        画面の指示に従って進むだけです。プラン選択、本人確認書類アップロード、受取方法の選択で完了！
+                    </p>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Page: Comparison -->
+    <div id="page-compare" class="page-content">
+        <div class="bg-white p-6 border-b">
+            <button onclick="showPage('top')" class="text-pink-500 text-sm mb-2 inline-flex items-center gap-1"><i class="fas fa-chevron-left"></i> 戻る</button>
+            <h2 class="text-2xl font-bold text-[#e6006e]">料金を比較する</h2>
+        </div>
+        <div class="p-6 max-w-2xl mx-auto">
+            <div class="reusable-table-container"></div>
+            <div class="text-center mt-6">
+                <button onclick="showPage('top')" class="bg-gray-800 text-white px-8 py-3 rounded-full font-bold">自分に合うガイドを探す</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Kid's Smartphone Debut (P3) -->
+    <div id="page-p3" class="page-content">
+        <div class="bg-white p-6 border-b">
+            <button onclick="showPage('top')" class="text-pink-500 text-sm mb-2 inline-flex items-center gap-1"><i class="fas fa-chevron-left"></i> 戻る</button>
+            <h2 class="text-2xl font-bold">お子さまのスマホデビューに</h2>
+        </div>
+        
+        <main class="p-6 max-w-2xl mx-auto space-y-8">
+            <!-- Section: Info Alert -->
+            <section class="bg-pink-50 border border-pink-200 p-4 rounded-xl">
+                <p class="text-xs text-pink-700 leading-relaxed">
+                    <i class="fas fa-exclamation-circle mr-1"></i>
+                    楽天モバイルには「キッズ携帯」という専用端末はありません。その代わりに、通常のスマホを<strong>「あんしんコントロール」</strong>で制限して安全に持たせるのが楽天スタイルです。
+                </p>
+            </section>
+
+            <!-- Section: Saikyo Kodomo Wari -->
+            <section class="bg-yellow-50 border-2 border-yellow-400 p-5 rounded-2xl card-shadow">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-yellow-400 text-white text-[10px] font-bold px-2 py-0.5 rounded">12歳までおトク！</span>
+                    <h3 class="font-black text-lg text-gray-800">最強子ども割</h3>
+                </div>
+                <div class="mb-4">
+                    <p class="text-sm font-bold text-gray-700 leading-snug">
+                        データ3GBまでなら、家族割引併用時で<br>
+                        <span class="text-2xl text-[#e6006e] font-black">月額税込 528円！</span>
+                    </p>
+                    <p class="text-[10px] text-gray-500 mt-1">※12歳まで毎月最大440円引き（最強家族プログラム適用時）</p>
+                </div>
+                <a href="https://network.mobile.rakuten.co.jp/fee/kids/?l-id=gnavi_fee_kids" target="_blank" class="block w-full text-center bg-white text-yellow-600 border border-yellow-300 py-2 rounded-xl font-bold text-sm hover:bg-yellow-100 transition-colors">
+                    最強子ども割の詳細を見る <i class="fas fa-chevron-right text-[10px] ml-1"></i>
+                </a>
+            </section>
+
+            <!-- Section: Device Option -->
+            <section class="bg-white p-6 rounded-2xl border border-gray-100 card-shadow">
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                    <i class="fas fa-mobile-screen text-pink-500"></i>
+                    スマホはどうすればいい？
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300">
+                        <p class="font-bold text-sm mb-1">【おすすめ】親のお下がり</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">
+                            以前使っていた古いスマホ（iPhone/Android）に楽天モバイルのSIMをセットするだけでOK！端末代を浮かせてデビューできます。
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300">
+                        <p class="font-bold text-sm mb-1">最新機種をセット購入</p>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-3">
+                            お申し込み時に, お子さま用の新しいスマホをセットで購入することも可能です。キャンペーンでお得に買える機種も。
+                        </p>
+                        <a href="https://network.mobile.rakuten.co.jp/product/?l-id=gnavi_product" target="_blank" class="inline-flex items-center justify-center bg-[#e6006e] text-white text-[10px] font-bold py-2 px-3 rounded-full hover:bg-pink-600 transition-colors w-full">
+                            <i class="fas fa-search mr-1"></i> スマホを探す
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                    <p class="text-[11px] font-bold text-blue-800 mb-1">そのスマホ、楽天モバイルで使える？</p>
+                    <a href="https://network.mobile.rakuten.co.jp/product/byod/?l-id=fee_kids_product_byod" target="_blank" class="text-xs text-blue-600 underline flex items-center">
+                        お手持ちのスマホの動作確認はこちら <i class="fas fa-external-link-alt ml-1 scale-75"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section 1: Requirements -->
+            <section>
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-5 rounded-r-xl">
+                    <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                        <i class="fas fa-info-circle"></i>
+                        未成年のお子さまのお申し込み
+                    </h3>
+                    <p class="text-sm text-blue-800 mb-4 leading-relaxed">
+                        未成年のお子さまでもご本人名義での契約が必要です。下記をご用意ください。
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2 text-sm bg-white p-3 rounded-lg shadow-sm">
+                            <span class="text-blue-500 font-bold">1</span>
+                            <span><strong>お子さまの楽天ID・本人確認書類</strong></span>
+                        </li>
+                        <li class="flex items-start gap-2 text-sm bg-white p-3 rounded-lg shadow-sm">
+                            <span class="text-blue-500 font-bold">2</span>
+                            <span><strong>法定代理人同意書 兼 支払名義人同意書</strong></span>
+                        </li>
+                        <li class="flex items-start gap-2 text-sm bg-white p-3 rounded-lg shadow-sm">
+                            <span class="text-blue-500 font-bold">3</span>
+                            <span><strong>クレジットカードまたは銀行口座</strong></span>
+                        </li>
+                    </ul>
+                    <div class="mt-5">
+                        <a href="https://network.mobile.rakuten.co.jp/flow/for-minors/?l-id=fee_kids_flow_for-minors" target="_blank" class="block w-full text-center bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors text-sm">
+                            お申し込みの流れを詳しく見る <i class="fas fa-chevron-right text-xs ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Safety Control -->
+            <section class="bg-white p-6 rounded-2xl border border-pink-100 card-shadow">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="bg-pink-100 p-2 rounded-lg text-[#e6006e]">
+                        <i class="fas fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">あんしんコントロール</h3>
+                </div>
+                
+                <div class="bg-pink-50 text-[#e6006e] text-[11px] font-bold px-3 py-1 rounded-full inline-block mb-3">
+                    <i class="fas fa-magic mr-1"></i> ご契約後に簡単に設定できます！
+                </div>
+
+                <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                    未成年の方が安全にスマホを利用できるよう、Webフィルタリングサービス（i-フィルター）が法律で原則義務付けられています。月550円が3カ月無料。
+                </p>
+
+                <div class="bg-gray-50 rounded-xl p-4 space-y-4 border border-gray-100 mb-6">
+                    <h4 class="text-sm font-bold text-gray-700 border-b pb-2 mb-3">主な見守り機能</h4>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm">
+                            <i class="fas fa-location-dot text-pink-500 mt-1"></i>
+                            <div>
+                                <p class="text-sm font-bold">リアルタイム位置確認</p>
+                                <p class="text-[11px] text-gray-500">お子さまの場所を地図上に表示。見守りエリア通知も可能。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm">
+                            <i class="fas fa-clock text-blue-500 mt-1"></i>
+                            <div>
+                                <p class="text-sm font-bold">使用時間の制限</p>
+                                <p class="text-[11px] text-gray-500">スマホを使える時間帯や時間をアプリごとに設定できます。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm">
+                            <i class="fas fa-eye text-green-500 mt-1"></i>
+                            <div>
+                                <p class="text-sm font-bold">アプリ利用の見守り</p>
+                                <p class="text-[11px] text-gray-500">不適切なサイトのブロックや利用状況を把握できます。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual Links -->
+                <div class="space-y-3">
+                    <a href="https://network.mobile.rakuten.co.jp/guide/anshin-control/" target="_blank" class="flex items-center justify-between w-full bg-pink-500 text-white px-4 py-3 rounded-xl font-bold text-sm hover:bg-pink-600 transition-colors shadow-sm">
+                        <span>あんしんコントロールについて詳しくみる</span>
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </a>
+                    <a href="https://network.mobile.rakuten.co.jp/guide/anshin-control/user-manual/" target="_blank" class="flex items-center justify-between w-full bg-pink-500 text-white px-4 py-3 rounded-xl font-bold text-sm hover:bg-pink-600 transition-colors shadow-sm">
+                        <span>あんしんコントロールの初期設定マニュアルはこちら</span>
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </a>
+
+                    
+                </div>
+            </section>
+          
+            
+
+            <!-- Common Procedure -->
+            <div class="common-steps-container"></div>
+
+            <!-- CTA Buttons -->
+            <div class="pt-6 space-y-4">
+                <a href="https://network.mobile.rakuten.co.jp/ad/lp/003/" target="_blank" class="block w-full text-center bg-[#e6006e] text-white py-4 rounded-xl font-bold shadow-lg">楽天モバイルを申し込む</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Page: Senior (P4) -->
+    <div id="page-p4" class="page-content">
+        <div class="bg-white p-6 border-b">
+            <button onclick="showPage('top')" class="text-pink-500 text-sm mb-2 inline-flex items-center gap-1"><i class="fas fa-chevron-left"></i> 戻る</button>
+            <h2 class="text-2xl font-bold text-gray-800">人生の大先輩（シニア）の方へ</h2>
+        </div>
+        <main class="p-6 max-w-2xl mx-auto space-y-8">
+            <!-- Section: Saikyo Senior Program -->
+            <section class="bg-purple-50 border-2 border-purple-400 p-5 rounded-2xl card-shadow">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-purple-400 text-white text-[10px] font-bold px-2 py-0.5 rounded">65歳以上限定</span>
+                    <h3 class="font-black text-lg text-gray-800">最強シニアプログラム</h3>
+                </div>
+                <div class="mb-4">
+                    <p class="text-sm font-bold text-gray-700 leading-snug">
+                        スマホ代もオプションパックもどちらもお得になるプランをご用意！
+                    </p>
+                </div>
+                <a href="https://network.mobile.rakuten.co.jp/fee/senior/" target="_blank" class="block w-full text-center bg-white text-purple-600 border border-purple-300 py-2 rounded-xl font-bold text-sm hover:bg-purple-100 transition-colors">
+                    最強シニアプログラムの詳細を見る <i class="fas fa-chevron-right text-[10px] ml-1"></i>
+                </a>
+            </section>
+
+            <section class="bg-white p-6 rounded-2xl border border-gray-100 card-shadow">
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    シニアに嬉しいポイント
+                </h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <div class="bg-green-100 text-green-600 p-1 rounded-full"><i class="fas fa-phone text-xs"></i></div>
+                        <p class="text-sm"><strong>通話料もお得：</strong>Rakuten Linkアプリを使えば、国内通話が15分まで無料でかけ放題！</p>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="bg-green-100 text-green-600 p-1 rounded-full"><i class="fas fa-store text-xs"></i></div>
+                        <p class="text-sm"><strong>安心の店舗サポート：</strong>全国の楽天モバイルショップで、契約や操作の相談ができます。</p>
+                    </li>
+                </ul>
+            </section>
+
+            <div class="common-steps-container"></div>
+            
+            <div class="pt-6 space-y-4">
+                <a href="https://network.mobile.rakuten.co.jp/ad/lp/003/" target="_blank" class="block w-full text-center bg-[#e6006e] text-white py-4 rounded-xl font-bold shadow-lg">楽天モバイルを申し込む</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Other Pages -->
+    <div id="page-p1" class="page-content">
+        <div class="bg-white p-6 border-b"><button onclick="showPage('top')" class="text-pink-500 text-sm mb-2"><i class="fas fa-chevron-left"></i> 戻る</button><h2 class="text-2xl font-bold">他社からお乗り換えの方</h2></div>
+        <div class="p-6 max-w-2xl mx-auto"><div class="common-steps-container"></div><a href="https://network.mobile.rakuten.co.jp/ad/lp/003/" target="_blank" class="block w-full text-center bg-[#e6006e] text-white py-4 mt-8 rounded-xl font-bold shadow-lg">乗り換える</a></div>
+    </div>
+
+    <div id="page-p2" class="page-content">
+        <div class="bg-white p-6 border-b">
+            <button onclick="showPage('top')" class="text-pink-500 text-sm mb-2"><i class="fas fa-chevron-left"></i> 戻る</button>
+            <h2 class="text-2xl font-bold text-gray-800">スマホも新しく購入</h2>
+        </div>
+        <div class="p-6 max-w-2xl mx-auto">
+            <div class="mb-10 text-center">
+                <div class="inline-block mb-4 p-1 px-4 bg-pink-50 border border-pink-100 rounded-full">
+                    <p class="text-xs font-bold text-[#e6006e]">
+                        <i class="fas fa-sparkles mr-1"></i> 最新機種からコスパ機まで勢揃い
+                    </p>
+                </div>
+                <h3 class="text-lg font-black text-gray-800 mb-2 leading-tight">
+                    最新のiPhoneから<br class="sm:hidden">お得なAndroidまで
+                </h3>
+                <p class="text-xs text-gray-500 mb-6 px-4">
+                    豊富なラインアップから、あなたにぴったりの一台が必ず見つかります。
+                </p>
+                
+                <a href="https://network.mobile.rakuten.co.jp/product/?l-id=gnavi_product" target="_blank" 
+                   class="inline-flex items-center justify-center w-full max-w-sm bg-white border-2 border-[#e6006e] text-[#e6006e] py-4 rounded-2xl font-black shadow-md hover:bg-pink-50 active:scale-95 transition-all duration-200">
+                    <i class="fas fa-mobile-screen-button text-xl mr-3"></i>
+                    製品ラインアップを見る
+                </a>
+            </div>
+
+            <div class="common-steps-container"></div>
+            
+            <a href="https://network.mobile.rakuten.co.jp/ad/lp/003/" target="_blank" class="block w-full text-center bg-[#e6006e] text-white py-4 mt-10 rounded-xl font-bold shadow-lg">購入して申し込む</a>
+        </div>
+    </div>
+
+    <div id="page-p5" class="page-content">
+        <div class="bg-white p-6 border-b">
+            <button onclick="showPage('top')" class="text-pink-500 text-sm mb-2"><i class="fas fa-chevron-left"></i> 戻る</button>
+            <h2 class="text-2xl font-bold text-gray-800">2台目・サブ機をご検討</h2>
+        </div>
+        <main class="p-6 max-w-2xl mx-auto space-y-8">
+            <section class="bg-gradient-to-br from-indigo-50 to-blue-50 border-2 border-blue-200 p-6 rounded-2xl shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-blue-600 text-white p-2 rounded-lg">
+                        <i class="fas fa-clone text-xl"></i>
+                    </div>
+                    <h3 class="font-black text-xl text-gray-800">デュアルSIMで賢く使い分け</h3>
+                </div>
+                
+                <p class="text-sm text-gray-700 leading-relaxed mb-6">
+                    今のスマホをそのままに、楽天モバイルを2つ目の回線として追加。<strong>1つのスマホで2つの電話番号や通信回線</strong>を自由に使い分けられます。
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    <div class="bg-white/60 p-3 rounded-xl border border-blue-100 flex items-center gap-2">
+                        <i class="fas fa-check-circle text-blue-500"></i>
+                        <span class="text-xs font-bold">仕事用番号をスマホ1台で</span>
+                    </div>
+                    <div class="bg-white/60 p-3 rounded-xl border border-blue-100 flex items-center gap-2">
+                        <i class="fas fa-check-circle text-blue-500"></i>
+                        <span class="text-xs font-bold">通信コストを賢く削減</span>
+                    </div>
+                </div>
+
+                <a href="https://network.mobile.rakuten.co.jp/product/sim/dual-sim/?l-id=gnavi_product_sim_dual-sim" target="_blank" 
+                   class="block w-full text-center bg-blue-600 text-white py-4 rounded-xl font-bold shadow-md hover:bg-blue-700 transition-colors">
+                    デュアルSIMの詳細・設定ガイド
+                </a>
+   </section>
+                       
+            <div class="common-steps-container"></div>
+
+            <div class="pt-6">
+                <a href="https://network.mobile.rakuten.co.jp/ad/lp/003/" target="_blank" class="block w-full text-center bg-[#e6006e] text-white py-4 rounded-xl font-bold shadow-lg">楽天モバイルを申し込む</a>
+            </div>
+        </main>
+    </div>
+    
+    <div id="page-p6" class="page-content">
+        <div class="bg-white p-6 border-b">
+            <button onclick="showPage('top')" class="text-pink-500 text-sm mb-2"><i class="fas fa-chevron-left"></i> 戻る</button>
+            <h2 class="text-2xl font-bold text-gray-800">家のWi-Fiをご利用</h2>
+        </div>
+        <main class="p-6 max-w-2xl mx-auto space-y-8">
+            <section class="bg-white p-6 rounded-2xl border border-gray-100 card-shadow text-center">
+                <h3 class="text-xl font-black text-gray-800 mb-3">工事不要！すぐに使えるおうちのWi-Fi</h3>
+                <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                    コンセントに挿すだけで、届いたその日から高速インターネットが使い放題。
+                </p>
+                
+                <div class="mb-8 p-4 bg-gray-50 rounded-xl">
+                    <p class="text-xs font-bold text-gray-500 mb-1">Rakuten Turboのプラン料金</p>
+                    <div class="flex items-center justify-center gap-1">
+                        <span class="text-3xl font-black text-[#e6006e]">4,840</span>
+                        <span class="text-sm font-bold text-[#e6006e]">円/月</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 mb-8">
+                    <div class="border-2 border-pink-200 rounded-2xl p-5 relative bg-white">
+                        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] px-3 py-1 rounded-full font-bold">おトク1</span>
+                        <div class="pt-2">
+                            <h4 class="text-[#e6006e] font-black text-base mb-2">最強おうちプログラム</h4>
+                            <p class="text-[11px] font-bold text-gray-700 leading-tight mb-3">
+                                永年毎月1,000ポイント還元
+                            </p>
+                            <a href="https://network.mobile.rakuten.co.jp/internet/turbo/campaign/home-internet/?l-id=rmt_campaign_home-internet_ouchi-program01" target="_blank" 
+                               class="inline-block w-full border border-pink-300 text-pink-600 py-2 rounded-full text-xs font-bold hover:bg-pink-50 transition-colors">
+                                最強おうちプログラムを詳しく見る
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="border-2 border-pink-200 rounded-2xl p-5 relative bg-white">
+                        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] px-3 py-1 rounded-full font-bold">おトク2</span>
+                        <div class="pt-2">
+                            <h4 class="text-[#e6006e] font-black text-base mb-2">製品代実質0円キャンペーン</h4>
+                            <p class="text-[11px] font-bold text-gray-700 leading-tight mb-3">
+                                製品代41,580円が実質0円！
+                            </p>
+                            <a href="https://network.mobile.rakuten.co.jp/internet/turbo/campaign/home-internet/?l-id=rmt_campaign_home-internet_turbo-cpn#fee" target="_blank" 
+                               class="inline-block w-full border border-pink-300 text-pink-600 py-2 rounded-full text-xs font-bold hover:bg-pink-50 transition-colors">
+                                製品代実質０円キャンペーンを詳しく見る
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://network.mobile.rakuten.co.jp/internet/turbo/?l-id=gnavi_internet_turbo" target="_blank" 
+                   class="block w-full bg-[#e6006e] text-white py-4 rounded-xl font-bold shadow-lg hover:bg-pink-600 transition-colors">
+                    Rakuten Turboの詳細を見る
+                </a>
+            </section>
+
+            <div class="common-steps-container"></div>
+            <div class="pt-6">
+                <a href="https://network.mobile.rakuten.co.jp/internet/turbo/application/?l-id=rmt_fixedbtn_application_01" target="_blank" class="block w-full text-center bg-[#e6006e] text-white py-4 rounded-xl font-bold shadow-lg">楽天Turboを申し込む</a>
+            </div>
+        </main>
+    </div>
+
+ 
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => {
+                p.classList.remove('active');
+                p.style.display = 'none';
+            });
+            
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                const tableTemplate = document.getElementById('comparison-table');
+                const tableContainers = target.querySelectorAll('.reusable-table-container');
+                tableContainers.forEach(container => {
+                    if (container.innerHTML.trim() === "") {
+                        container.appendChild(tableTemplate.content.cloneNode(true));
+                    }
+                });
+
+                const stepsTemplate = document.getElementById('common-steps');
+                const stepsContainers = target.querySelectorAll('.common-steps-container');
+                stepsContainers.forEach(container => {
+                    if (container.innerHTML.trim() === "") {
+                        container.appendChild(stepsTemplate.content.cloneNode(true));
+                    }
+                });
+
+                target.style.display = 'block';
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('top');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
